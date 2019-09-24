@@ -3,6 +3,7 @@ class Square extends Element {
     super(x, y, false);
     this.color = color;
     this.count = 0;
+    this.sound = new Sound('sound');
   }
 
   autoDraw(ctx){
@@ -17,6 +18,7 @@ class Square extends Element {
     if (this.count % 100 === 0) {
       this.moveDown();
       this.count = 0;
+      this.sound.play();
     }
   };
 }
