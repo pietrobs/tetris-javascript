@@ -1,7 +1,7 @@
 class Element {
   constructor(x, y, isTransposable) {
     this.pos = new Position(x, y);
-    this.isTransposable = false;
+    this.isTransposable = isTransposable;
   }
 
   overlap(element) {
