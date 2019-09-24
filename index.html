@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Framework POO II em JavaScript</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background: black;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      h1 {
+        color: white;
+      }
+      canvas {
+        background-image: url("assets/unesp.jpg");
+        background-size: cover;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TETRIS</h1>
+    <select id="select-scenario">
+      <option value="unesp">Unesp</option>
+      <option value="konoha">Konoha</option>
+    </select>
+    <canvas id="canvas" width="600" height="600"></canvas>
+  </body>
+</html>
+
+<script src="utils/Consts.js"></script>
+<script src="utils/Position.js"></script>
+<script src="control/GameController.js"></script>
+<script src="elements/Element.js"></script>
+<script src="elements/Square.js"></script>
+<script src="elements/Barrier.js"></script>
+<script src="control/GameScreen.js"></script>
+<script>
+  const gameScreen = new GameScreen({ canvasId: "canvas" });
+
+  const selectScenario = document.getElementById('select-scenario');
+  selectScenario.addEventListener('change', (e) => {
+    gameScreen.setScenario(e.target.value);
+  });
+</script>
+
+<!-- Pietro Schiavinato -->
