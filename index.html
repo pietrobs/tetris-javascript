@@ -24,6 +24,10 @@
         background-size: cover;
         border: 1px solid black;
       }
+
+      .hidden{
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
@@ -33,9 +37,13 @@
       <option value="konoha">Konoha</option>
     </select>
     <canvas id="canvas" width="600" height="600"></canvas>
+    <audio id="sound" class="hidden" autoplay>
+        <source src="assets/beep.mp3" type="audio/mpeg">
+      </audio>
   </body>
 </html>
 
+<script src="utils/Sound.js"></script>
 <script src="utils/Consts.js"></script>
 <script src="utils/Position.js"></script>
 <script src="control/GameController.js"></script>
@@ -44,7 +52,7 @@
 <script src="elements/Barrier.js"></script>
 <script src="control/GameScreen.js"></script>
 <script>
-  const gameScreen = new GameScreen({ canvasId: "canvas" });
+  const gameScreen = new GameScreen({ canvasId: "canvas"});
 
   const selectScenario = document.getElementById('select-scenario');
   selectScenario.addEventListener('change', (e) => {
