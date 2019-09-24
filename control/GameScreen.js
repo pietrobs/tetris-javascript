@@ -4,6 +4,8 @@ class GameScreen {
     this.ctx = this.canvas.getContext("2d");
     this.width = this.canvas.width;
     this.height = this.canvas.height;
+    this.background = new Image(Consts.CELL_SIZE, Consts.CELL_SIZE);
+    this.background.src = `${Consts.IMG_PATH}/bricks.png`;
 
     this.gameController = new GameController();
     this.elements = [];
@@ -34,20 +36,29 @@ class GameScreen {
     return this.canvas.getContext("2d");
   }
 
-  draw() {
+  paint() {
     Drawing.clear();
+    for (let x = 0; x < Consts.NUM_CELLS; x++) {
+      for (let y = 0; y < Consts.NUM_CELLS; y++) {
+        Drawing.draw(
+          x * Consts.CELL_SIZE,
+          y * Consts.CELL_SIZE,
+          this.background
+        );
+      }
+    }
     this.gameController.processAllElements(this.elements);
     this.gameController.drawAllElement(this.elements);
   }
 
   loop = () => {
-    this.draw();
+    this.paint();
     document.title = this.lolo.getStringPosition();
   };
 
   go() {
     this.keyPressed();
-    
+
     this.addElement(this.lolo);
     this.addElement(new Skull(0, 250));
 

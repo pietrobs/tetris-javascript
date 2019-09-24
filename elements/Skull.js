@@ -8,11 +8,11 @@ class Skull extends Element {
       imageIcon: "skull.png"
     });
     this.countIntervals = 0;
-    this.TIME_FIRE = 300;
+    this.TIME_FIRE = 150;
   }
 
   autoDraw() {
-    Drawing.drawImg(this.pos.getX(), this.pos.getY(), this.imageIcon);
+    Drawing.draw(this.pos.getX(), this.pos.getY(), this.imageIcon);
 
     this.countIntervals++;
 
@@ -21,6 +21,7 @@ class Skull extends Element {
         this.pos.getX() + Consts.CELL_SIZE,
         this.pos.getY()
       );
+
       Drawing.getGameScreen().addElement(fire);
       this.countIntervals = 0;
     }

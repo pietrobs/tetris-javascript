@@ -11,20 +11,7 @@ class Drawing {
     this.gameScreen = gameScreen;
   }
 
-  static drawRect(x, y, color) {
-    const { ctx } = this.gameScreen;
-    ctx.beginPath();
-    ctx.rect(x, y, Consts.CELL_SIZE, Consts.CELL_SIZE);
-    ctx.fillStyle = color;
-    ctx.shadowColor = "black";
-    ctx.shadowBlur = 4;
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
-    ctx.fill();
-    ctx.closePath();
-  }
-
-  static drawImg(x, y, img) {
+  static draw(x, y, img) {
     const { ctx } = this.gameScreen;
     ctx.drawImage(img, x, y, img.width, img.height);
   }

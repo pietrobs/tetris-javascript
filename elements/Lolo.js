@@ -5,7 +5,7 @@ class Lolo extends Element {
   }
 
   autoDraw() {
-    Drawing.drawImg(this.pos.getX(), this.pos.getY(), this.imageIcon);
+    Drawing.draw(this.pos.getX(), this.pos.getY(), this.imageIcon);
   }
 
   backToLastPosition() {

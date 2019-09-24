@@ -6,7 +6,7 @@ class Fire extends Element {
   }
 
   autoDraw() {
-    Drawing.drawImg(this.pos.getX(), this.pos.getY(), this.imageIcon);
+    Drawing.draw(this.pos.getX(), this.pos.getY(), this.imageIcon);
 
     this.countDelay++;
     if (this.countDelay === this.DELAY_MOVIMENT) {
