@@ -37,6 +37,10 @@ class Position {
     this.setPosition(this.previousX, this.previousY);
   }
 
+  moveUp() {
+    return this.setPosition(this.getX(), this.getY() - Consts.CELL_SIZE);
+  }
+
   moveDown() {
     return this.setPosition(this.getX(), this.getY() + Consts.CELL_SIZE);
   }

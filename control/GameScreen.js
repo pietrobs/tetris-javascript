@@ -1,57 +1,89 @@
 class GameScreen {
   constructor({ canvasId }) {
-    this.gameController = new GameController();
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
     this.width = this.canvas.width;
     this.height = this.canvas.height;
-    this.square = new Square(0, 0, "blue");
+
+    this.gameController = new GameController();
     this.elements = [];
+    this.lolo = new Lolo(0, 0);
 
-    this.start();
+    Drawing.setGameScreen(this);
+
+    this.go();
   }
 
-  setScenario(scenarioName){
-      this.canvas.style.backgroundImage = `url(assets/${scenarioName}.jpg)`;
-  }
-
-  keyPressed(){
-    document.onkeydown = e => {
-      if (e.keyCode === 37) {
-        this.square.moveLeft();
-      }
-
-      if (e.keyCode === 39) {
-        this.square.moveRight();
-      }
-    };
-  };
-
-  addElement(element){
+  addElement(element) {
     this.elements.push(element);
-  };
+  }
 
-  removeElement(){
-    //   to do
-  };
+  removeElement(element) {
+    this.elements = this.elements.filter(elem => element !== elem);
+  }
 
-  draw(){
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  getWidth() {
+    return this.width;
+  }
+
+  getHeight() {
+    return this.height;
+  }
+
+  getCtx() {
+    return this.canvas.getContext("2d");
+  }
+
+  draw() {
+    Drawing.clear();
     this.gameController.processAllElements(this.elements);
-    this.gameController.drawAllElement(this.ctx, this.elements);
-  };
+    this.gameController.drawAllElement(this.elements);
+  }
 
   loop = () => {
     this.draw();
-    document.title = this.square.getStringPosition();
+    document.title = this.lolo.getStringPosition();
   };
 
-  start() {
+  go() {
     this.keyPressed();
-    this.addElement(this.square);
-    this.addElement(new Barrier(0, 250));
-    this.addElement(new Barrier(50, 250));
+    
+    this.addElement(this.lolo);
+    this.addElement(new Skull(0, 250));
 
     setInterval(this.loop, Consts.DELAY_SCREEN_UPDATE);
+  }
+
+  keyPressed() {
+    document.onkeydown = e => {
+      switch (e.keyCode) {
+        case 37:
+          this.lolo.moveLeft();
+          break;
+        case 38:
+          this.lolo.moveUp();
+          break;
+        case 39:
+          this.lolo.moveRight();
+          break;
+        case 40:
+          this.lolo.moveDown();
+          break;
+        default:
+          null;
+      }
+    };
+  }
+
+  keyTyped() {
+    document.onkeypress = e => {
+      // ...
+    };
+  }
+
+  keyUp() {
+    document.onkeyup = e => {
+      // ...
+    };
   }
 }

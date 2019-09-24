@@ -1,7 +1,10 @@
 class Element {
-  constructor(x, y, isTransposable) {
+  constructor({ x, y, isTransposable, isMortal, imageIcon }) {
     this.pos = new Position(x, y);
     this.isTransposable = isTransposable;
+    this.isMortal = isMortal;
+    this.imageIcon = new Image(Consts.CELL_SIZE, Consts.CELL_SIZE);
+    this.imageIcon.src = `${Consts.IMG_PATH}/${imageIcon}`;
   }
 
   overlap(element) {
@@ -12,11 +15,8 @@ class Element {
   }
 
   getStringPosition() {
-    return `(${this.pos.getX()/Consts.CELL_SIZE}, ${this.pos.getY()/Consts.CELL_SIZE})`;
-  }
-
-  backToLastPosition() {
-    this.pos.comeBack();
+    return `(${this.pos.getX() / Consts.CELL_SIZE}, ${this.pos.getY() /
+      Consts.CELL_SIZE})`;
   }
 
   setPosition(x, y) {
@@ -29,6 +29,18 @@ class Element {
 
   setTransposable(isTransposable) {
     this.isTransposable = isTransposable;
+  }
+
+  isMortal() {
+    return this.isMortal;
+  }
+
+  setMortal(isMortal) {
+    this.isMortal = isMortal;
+  }
+
+  moveUp() {
+    return this.pos.moveUp();
   }
 
   moveDown() {

@@ -28,28 +28,22 @@
   </head>
   <body>
     <h1>TETRIS</h1>
-    <select id="select-scenario">
-      <option value="unesp">Unesp</option>
-      <option value="konoha">Konoha</option>
-    </select>
     <canvas id="canvas" width="600" height="600"></canvas>
   </body>
 </html>
 
+<script src="utils/Drawing.js"></script>
 <script src="utils/Consts.js"></script>
 <script src="utils/Position.js"></script>
 <script src="control/GameController.js"></script>
 <script src="elements/Element.js"></script>
-<script src="elements/Square.js"></script>
-<script src="elements/Barrier.js"></script>
+<script src="elements/Fire.js"></script>
+<script src="elements/Lolo.js"></script>
+<script src="elements/Skull.js"></script>
 <script src="control/GameScreen.js"></script>
+<script src="control/Main.js"></script>
 <script>
-  const gameScreen = new GameScreen({ canvasId: "canvas" });
-
-  const selectScenario = document.getElementById('select-scenario');
-  selectScenario.addEventListener('change', (e) => {
-    gameScreen.setScenario(e.target.value);
-  });
+  Main.main();
 </script>
 
 <!-- Pietro Schiavinato -->
