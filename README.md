@@ -65,16 +65,16 @@ loop  = () => {
  
 `drawAllElement()` Executa o método autoDraw de cada **elemento**
 
-`processAllElements()` Verifica colisão entre todos os elementos do array de elementos, talvez precise ser melhorada caso tenha muitos elementos renderizados
+`processAllElements()` Verifica colisão entre todos os elementos do array de elementos, talvez precise ser melhorada caso existam muitos elementos renderizados
 
  ### <a name="Element"></a>Element
-Classe pai de qualquer elemento
+Classe pai de um elemento, contém os métodos de movimentação
 
  
  ### <a name="Barrier"></a>Barrier
- Objeto estático da fase
+ Exemplo de objeto estático do cenário
  ### <a name="Square"></a>Square
- Objeto que se move
+ Exemplo de objeto com movimentação
  ### <a name="Consts"></a>Consts
 Constantes
 ```
