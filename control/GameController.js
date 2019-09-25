@@ -1,5 +1,5 @@
 class GameController {
-  drawAllElement(elements) {
+  drawAllElements(elements) {
     elements.forEach(element => {
       element.autoDraw();
     });

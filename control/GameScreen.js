@@ -48,7 +48,7 @@ class GameScreen {
       }
     }
     this.gameController.processAllElements(this.elements);
-    this.gameController.drawAllElement(this.elements);
+    this.gameController.drawAllElements(this.elements);
   }
 
   loop = () => {
