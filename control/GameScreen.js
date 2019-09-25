@@ -67,6 +67,7 @@ class GameScreen {
 
   keyPressed() {
     document.onkeydown = e => {
+      new Sound().createPlayer('assets/squeeze.mp3').play();
       switch (e.keyCode) {
         case 37:
           this.lolo.moveLeft();
