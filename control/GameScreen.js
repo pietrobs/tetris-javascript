@@ -9,15 +9,14 @@ class GameScreen {
 
     this.gameController = new GameController();
     this.elements = [];
-    this.lolo = new Lolo(0, 0);
 
     Drawing.setGameScreen(this);
 
     this.go();
   }
 
-  addElement(element) {
-    this.elements.push(element);
+  addElement(elements) {
+    this.elements = [...elements, ...this.elements];
   }
 
   removeElement(element) {
@@ -47,39 +46,51 @@ class GameScreen {
         );
       }
     }
-    this.gameController.processAllElements(this.elements);
+    this.gameController.processAllElements(this.elements, this.piece);
     this.gameController.drawAllElements(this.elements);
+    this.gameController.verifyFilledLine(this.elements);
+  }
+
+  generatePiece() {
+    this.piece = new Piece();
+    this.addElement(this.piece.getBlocks());
   }
 
   loop = () => {
     this.paint();
-    document.title = this.lolo.getStringPosition();
+    this.count++;
+
+    if (this.count === 10) {
+      if (!this.piece.moveDown()) {
+        this.generatePiece();
+      }
+      this.count = 0;
+    }
   };
 
   go() {
     this.keyPressed();
 
-    this.addElement(this.lolo);
-    this.addElement(new Skull(0, 250));
+    this.count = 0;
+    this.generatePiece();
 
     setInterval(this.loop, Consts.DELAY_SCREEN_UPDATE);
   }
 
   keyPressed() {
     document.onkeydown = e => {
-      new Sound().createPlayer('assets/squeeze.mp3').play();
       switch (e.keyCode) {
         case 37:
-          this.lolo.moveLeft();
+          this.piece.moveLeft();
           break;
         case 38:
-          this.lolo.moveUp();
+          this.piece.moveUp();
           break;
         case 39:
-          this.lolo.moveRight();
+          this.piece.moveRight();
           break;
         case 40:
-          this.lolo.moveDown();
+          this.piece.moveDown();
           break;
         default:
           null;
