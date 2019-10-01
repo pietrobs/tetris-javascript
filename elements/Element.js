@@ -3,8 +3,10 @@ class Element {
     this.pos = new Position(x, y);
     this.isTransposable = isTransposable;
     this.isMortal = isMortal;
-    this.imageIcon = new Image(Consts.CELL_SIZE, Consts.CELL_SIZE);
-    this.imageIcon.src = `${Consts.IMG_PATH}/${imageIcon}`;
+    if (imageIcon) {
+      this.imageIcon = new Image(Consts.CELL_SIZE, Consts.CELL_SIZE);
+      this.imageIcon.src = `${Consts.IMG_PATH}/${imageIcon}`;
+    }
   }
 
   overlap(element) {
